@@ -6,6 +6,7 @@ import pyinputplus as pyip
 INPUT_TRY = 3
 
 print("BMI 計算，請輸入")
+# Exception handling refer to https://docs.python.org/3/tutorial/errors.html
 try:
 	# Input user information, include name, height and weight
 	name = pyip.inputStr("姓名: ", limit=INPUT_TRY)

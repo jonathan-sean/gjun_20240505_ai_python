@@ -15,12 +15,15 @@ import pyinputplus as pyip
 #	total += i
 #print()
 
-for i in range(1, 10):
-	print(f"i={i}")
-	for j in range(1, 10):
-		print(f"j={j}", end=' ')
-	print("\n-----------------------")
+for i in range(2, 10):
+	#print(f"i={i}")
+	for j in range(2, 10):
+		v = i * j
+		# print format refer to https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting
+		print(f"{i}x{j}={v:2d}", end='\t')
+	print()
 
+print()
 try:
 	n = pyip.inputInt("加總 1 到 n，請輸入 n: ", min=0, timeout=3)
 	total = 0
