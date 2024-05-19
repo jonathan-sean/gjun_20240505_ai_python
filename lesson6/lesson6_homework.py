@@ -1,0 +1,32 @@
+# BMI 計算, refer to https://toolboxtw.com/zh-TW/calculator/bmi
+# BMI = weight(kg) / height(m)^2
+
+import pyinputplus as pyip
+
+INPUT_TRY = 3
+
+print("BMI 計算，請輸入")
+try:
+	# Input name
+	name = pyip.inputStr("姓名: ", limit=INPUT_TRY)
+	# Input height
+	height = pyip.inputFloat("身高(公分): ", min=0, limit=INPUT_TRY)
+	# Input weight
+	weight = pyip.inputFloat("體重(公斤): ", min=0, limit=INPUT_TRY)
+
+	# Output user information
+	bmi = weight / (height / 100)**2
+	# Get the result
+	if bmi < 18.5:
+		result = "過輕"
+	elif bmi >= 18.5 and bmi < 24:
+		result = "正常"
+	elif bmi >= 24 and bmi < 27:
+		result = "過重"
+	else:
+		result = "肥胖"
+
+	# Output BMI and result
+	print(f"\n{name} - 身高: {height}cm，體重: {weight}Kg， BMI: {round(bmi, 2)}({result})")
+except Exception as e:
+	print(f"EXCEPTION - {type(e)}")
