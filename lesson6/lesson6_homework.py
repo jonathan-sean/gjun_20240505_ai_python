@@ -25,6 +25,7 @@ try:
 		result = "肥胖"
 
 	# Output user information, BMI and result
-	print(f"\n{name} - 身高: {height}cm，體重: {weight}Kg， BMI: {round(bmi, 2)}({result})")
+	print(f"\n{name} - 身高: {height}cm，體重: {weight}Kg， BMI: {round(bmi, 2)}")
+	print(f"你的體重{result}")
 except Exception as e:
 	print(f"EXCEPTION - {type(e)}")
