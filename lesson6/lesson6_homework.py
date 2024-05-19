@@ -7,16 +7,13 @@ INPUT_TRY = 3
 
 print("BMI 計算，請輸入")
 try:
-	# Input name
+	# Input user information, include name, height and weight
 	name = pyip.inputStr("姓名: ", limit=INPUT_TRY)
-	# Input height
 	height = pyip.inputFloat("身高(公分): ", min=0, limit=INPUT_TRY)
-	# Input weight
 	weight = pyip.inputFloat("體重(公斤): ", min=0, limit=INPUT_TRY)
 
-	# Calculate the BMI
+	# Calculate BMI and get result
 	bmi = weight / (height / 100)**2
-	# Get the result
 	if bmi < 18.5:
 		result = "過輕"
 	elif bmi >= 18.5 and bmi < 24:
