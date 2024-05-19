@@ -13,6 +13,6 @@ try:
 	print(f"學生分數是: {round(scores, 0)}")
 except ValueError:
 	print("Invalid value, check your input.")
-except Exception:
-	print("Something wrong, check your input.")
+except Exception as e:
+	print(f"Exception: {type(e)}, check your input.")
 print("End this program.")
