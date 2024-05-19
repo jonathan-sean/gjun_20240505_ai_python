@@ -2,11 +2,17 @@
 # 若超過 300分則以 300分記
 # 有些學生可以加 5%
 
-scores = int(input("請輸入學生分數(最高300分):"))
-is_add = input("學生是否符合加分條件?(y/n)")
-if is_add == 'y':
-	scores *= 1.05
-if scores > 300:
-	scores = 300
+try:
+	scores = int(input("請輸入學生分數(最高300分):"))
+	is_add = input("學生是否符合加分條件?(y/n)")
+	if is_add == 'y':
+		scores *= 1.05
+	if scores > 300:
+		scores = 300
 
-print(f"學生分數是: {round(scores, 0)}")
+	print(f"學生分數是: {round(scores, 0)}")
+except ValueError:
+	print("Invalid value, check your input.")
+except Exception:
+	print("Something wrong, check your input.")
+print("End this program.")
