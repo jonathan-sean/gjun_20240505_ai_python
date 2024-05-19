@@ -14,7 +14,7 @@ try:
 	# Input weight
 	weight = pyip.inputFloat("體重(公斤): ", min=0, limit=INPUT_TRY)
 
-	# Output user information
+	# Calculate the BMI
 	bmi = weight / (height / 100)**2
 	# Get the result
 	if bmi < 18.5:
@@ -26,7 +26,7 @@ try:
 	else:
 		result = "肥胖"
 
-	# Output BMI and result
+	# Output user information, BMI and result
 	print(f"\n{name} - 身高: {height}cm，體重: {weight}Kg， BMI: {round(bmi, 2)}({result})")
 except Exception as e:
 	print(f"EXCEPTION - {type(e)}")
