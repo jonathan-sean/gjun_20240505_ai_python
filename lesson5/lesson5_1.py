@@ -4,13 +4,16 @@
 
 try:
 	scores = int(input("請輸入學生分數(最高300分):"))
-	is_add = input("學生是否符合加分條件?(y/n)")
-	if is_add == 'y':
-		scores *= 1.05
 	if scores > 300:
-		scores = 300
+		print("Input value reach max. 300, please input again.")
+	else:
+		is_add = input("學生是否符合加分條件?(y/n)")
+		if is_add == 'y':
+			scores *= 1.05
+		if scores > 300:
+			scores = 300
 
-	print(f"學生分數是: {round(scores, 0)}")
+		print(f"學生分數是: {round(scores, 0)}")
 except ValueError:
 	print("Invalid value, check your input.")
 except Exception as e:
