@@ -21,8 +21,12 @@ try:
 		result = "正常"
 	elif bmi >= 24 and bmi < 27:
 		result = "過重"
+	elif bmi >= 27 and bmi < 30:
+		result = "輕度肥胖"
+	elif bmi >= 30 and bmi < 35:
+		result = "中度肥胖"
 	else:
-		result = "肥胖"
+		result = "重度肥胖"
 
 	# Output user information, BMI and result
 	print(f"\n{name} - 身高: {height}cm，體重: {weight}Kg， BMI: {round(bmi, 2)}")
