@@ -1,5 +1,5 @@
 import random
-import pyinputplus as pyip
+import pyinputplus as pyip	# The usage refer to https://github.com/asweigart/pyinputplus/blob/master/src/pyinputplus/__init__.py
 
 min:int = 1
 max:int = 100
@@ -23,8 +23,8 @@ while(True):
 		print("You win!")
 		break
 	print(f"You guess {count} times")
-	again = pyip.inputYesNo("Play again? ", default="n")
-	if again == "no":
+	again = pyip.inputYesNo("Play again? ", default='n', yesVal='y', noVal='n')
+	if again == "n":
 		break
 
 print("Thanks for your playing.")
