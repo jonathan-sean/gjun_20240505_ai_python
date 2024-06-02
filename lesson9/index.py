@@ -2,7 +2,7 @@
 # BMI = weight(kg) / height(m)^2
 
 import pyinputplus as pyip
-import health as tools
+import health_class as tools
 
 def main():
 	INPUT_TRY = 3
@@ -16,8 +16,8 @@ def main():
 		weight = pyip.inputFloat("體重(公斤): ", min=0, limit=INPUT_TRY)
 
 		# Calculate BMI and get result
-		bmi = tools.cal_bmi(height, weight)
-		status = tools.get_status(bmi)
+		bmi = tools.Bmi.cal_bmi(height, weight)
+		status = tools.Bmi.get_status(bmi)
 
 		# Output user information, BMI and result
 		print(f"\n{name} - \n身高: {height}cm\n體重: {weight}Kg")
