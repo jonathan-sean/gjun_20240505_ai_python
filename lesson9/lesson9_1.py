@@ -2,13 +2,14 @@ import pyinputplus as pyip
 
 class Bmi:
 	# Register class method through @classmethod
-	# First parameter must be 'cls'
+	# First parameter must be 'self' or 'cls'
+	# ('self' is more popular which same with more program language)
 	@classmethod
-	def cal_bmi(cls, height:float, weight:float)->float:
+	def cal_bmi(self, height:float, weight:float)->float:
 		return weight / (height / 100)**2
 
 	@classmethod
-	def get_status(cls, bmi: float)->str:
+	def get_status(self, bmi: float)->str:
 		if bmi < 18.5:
 			return "過輕"
 		elif bmi >= 18.5 and bmi < 24:
