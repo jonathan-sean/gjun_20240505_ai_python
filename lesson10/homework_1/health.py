@@ -2,27 +2,30 @@
 # BMI = weight(kg) / height(m)^2
 
 class BMI:
-	__name: str
-	__height: float
-	__weight: float
+#	__name: str
+#	__height: float
+#	__weight: float
 	@property
 	def name(self):
 		return self.__name
+	@name.setter
+	def name(self, name:str):
+		self.__name = name
 	@property
 	def height(self):
 		return self.__height
+	@height.setter
+	def height(self, height:float):
+		self.__height = height
 	@property
 	def weight(self):
 		return self.__weight
-	def setName(self, name:str):
-		self.__name = name
-	def setHeight(self, height:float):
-		self.__height = height
-	def setWeight(self, weight:float):
+	@weight.setter
+	def weight(self, weight:float):
 		self.__weight = weight
 	def bmi(self)->float:
 		return self.__weight / (self.__height / 100)**2
-	def status(self, bmi: float)->str:
+	def status(self, bmi:float)->str:
 		if bmi < 18.5:
 			return "過輕"
 		elif bmi >= 18.5 and bmi < 24:

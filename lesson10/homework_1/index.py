@@ -9,9 +9,9 @@ def main():
 		# Create class instance of BMI
 		obj = BMI()
 		# Input user information, include name, height and weight
-		obj.setName(pyip.inputStr("請輸入姓名: ", limit=INPUT_TRY))
-		obj.setHeight(pyip.inputFloat("請輸入身高(cm): ", min=0, limit=INPUT_TRY))
-		obj.setWeight(pyip.inputFloat("請輸入體重(kg): ", min=0, limit=INPUT_TRY))
+		obj.name = pyip.inputStr("請輸入姓名: ", limit=INPUT_TRY)
+		obj.height = pyip.inputFloat("請輸入身高(cm): ", min=0, limit=INPUT_TRY)
+		obj.weight = pyip.inputFloat("請輸入體重(kg): ", min=0, limit=INPUT_TRY)
 
 		# Calculate BMI and get result
 		bmi = obj.bmi()
@@ -22,7 +22,7 @@ def main():
 		print(f"{obj.name} BMI 值為 {round(bmi, 2)}")
 		print(f"您的體重: {status}")
 	except Exception as e:
-		print(f"ERROR - {type(e)}")
+		print(f"EXCEPTION:{type(e)} - {e}")
 
 
 if __name__ == '__main__':
