@@ -28,8 +28,11 @@ def practice1():
 				return '0.0'
 			return value
 	# For complete JSON data
+	# JSON default is dictionary type, so declare BaseModel here
 	class Root(BaseModel):
 		records:list[Record]
+	def filter_pm25(item:dict) -> bool:
+		return(item['pm25'] == 0.0)
 
 	try:
 		# Read JSON file
@@ -46,14 +49,25 @@ def practice1():
 		# Convert JSON format to Python dictionary list
 		data_dict:dict = aqi.model_dump()
 		data_dlst:list[dict] = data_dict['records']
-		for d in data_dlst:
-			print(d)
+		print(str.format("Complete data has {} records", len(data_dlst)))
+#		for d in data_dlst:
+#			print(d)
+		data_dlst_nopm25:list[dict] = list(filter(filter_pm25, data_dlst))
+		print(str.format("Data's PM2.5 is zero which has {} records", len(data_dlst_nopm25)))
+		# Use lambda function
+		data_dlst_haspm25:list[dict] = list(filter(lambda d: d['pm25'] != 0.0, data_dlst))
+		print(str.format("Data filter out zero PM2.5 has {} records", len(data_dlst_haspm25)))
+		sort_key:str = 'pm25'
+		data_dlst_haspm25_sorted:list[dict] = sorted(data_dlst_haspm25, key=lambda i: i[sort_key])
+		#pprint(data_dlst_haspm25_sorted)
+#		pprint(data_dlst_haspm25_sorted[:5])
+		pprint(data_dlst_haspm25_sorted[-10:0])
 	except Exception as e:
 		print(f"EXCEPTION:{type(e)} - {e}")
 
 def practice2():
 	# filter data of list
-	numbers:list[int] = [1,2,3,4,5,6,7,8,9,10]
+	numbers:list[int] = [1,2,10,4,7,5,6,3,8,9,]
 	def is_even(num:int) -> bool:
 #		if num % 2 == 0:
 #			return True
@@ -66,11 +80,16 @@ def practice2():
 		return num % 2 != 0
 	print(str.format("Even: {}", list(filter(is_even, numbers))))
 	print(str.format("Odd: {}", list(filter(is_odd, numbers))))
+	# Use lambda function instead of general function
+	print(str.format("Use lambda - Even: {}", list(filter(lambda num: num %2 == 0, numbers))))
+	print(str.format("Use lambda - Odd: {}", list(filter(lambda num: num %2 != 0, numbers))))
+	print(str.format("sorted: {}", sorted(numbers)))
+	print(str.format("Reverse sorted: {}", sorted(numbers, reverse=True)))
 
 
 if "__main__" == __name__:
 	try:
-#		practice1()
-		practice2()
+		practice1()
+#		practice2()
 	except Exception as e:
 		print(f"EXCEPTION:{type(e)} - {e}")
