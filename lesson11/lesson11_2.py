@@ -29,11 +29,11 @@ def practice2():
 
 def practice3():
 	# pydantic refer to https://docs.pydantic.dev
+	from pydantic import BaseModel
+
 	# BaseModel inherited from dataclass, but the first parameter is '*'
 	# BaseMode will auto convert data type,
 	# for example the file is int, when I input a str, BaseMode will convert it to int automatically
-	from pydantic import BaseModel
-
 	class Student(BaseModel):
 		name:str
 		scores:int = 0
