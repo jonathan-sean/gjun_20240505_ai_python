@@ -34,7 +34,7 @@ def practice1():
 
 	try:
 		# Fetch complete JSON data
-		aqi:AQI = AQI.model_validate_json(json_content, context="pm25")
+		aqi:AQI = AQI.model_validate_json(json_content)
 		print(aqi)
 		print(type(aqi))
 	except Exception as e:
