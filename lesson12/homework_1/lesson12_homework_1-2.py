@@ -77,8 +77,8 @@ def _display_sites_random(dlist:list[dict], sort:bool=True, sort_key:str='mday',
 def main():
 	title:str = "臺北市 U-Bike 即時資訊"
 	try:
-		youbike_url:str = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-		resp:Response = requests.get(youbike_url)
+		ubike_url:str = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
+		resp:Response = requests.get(ubike_url)
 		if not resp.ok:
 			print(f"ERROR: 下載{title}失敗")
 			return
