@@ -28,8 +28,8 @@ class UBike(BaseModel):
 	ar:str
 	latitude:float
 	longitude:float
-	available_rent_bikes:int
-	available_return_bikes:int
+	rents:int = Field(alias="available_rent_bikes")
+	returns:int = Field(alias="available_return_bikes")
 	total:int
 
 # Inherited from PyDantic RootModel
@@ -82,6 +82,7 @@ def main():
 		if not resp.ok:
 			print(f"ERROR: 下載{title}失敗")
 			return
+		resp.close()
 
 		# This JSON include integer and float, but python json module cannot parse these data
 		# How to correct these ?
@@ -97,22 +98,22 @@ def main():
 		act:bool = True
 		ubike_act:list[dict] = list(filter(lambda item:item['act'] == act, ubike_full))
 
-		patterns:dict[str: int] = { "available_rent_bikes": 3, "available_return_bikes": 3 }
+		patterns:dict[str: int] = { "rents": 3, "returns": 3 }
 		display_mode:int = 1	# default display or condition
 		if display_mode == 1:
 			#  2. Search for bikes to rent
-			key:str = "available_rent_bikes"
+			key:str = "rents"
 			#ubike_lst:list[dict] = list(filter(lambda item:item[k] > 0 and item[k] <= n, ubike_act))
 			ubike_lst:list[dict] = _search_bike(ubike_act, key, val_max=patterns[key])
 			print(str.format("\n營運中且可借車輛數在 {} 輛(含)以內的有站點 {} 個", patterns[key], len(ubike_lst)))
-			_display_sites_random(ubike_lst)
+			_display_sites_random(ubike_lst, sort_key=key)
 
 			#  3. Search for bikes to return
-			key = "available_return_bikes"
+			key = "returns"
 			#ubike_lst:list[dict] = list(filter(lambda item:item[k] > 0 and item[k] <= n, ubike_act))
 			ubike_lst:list[dict] = _search_bike(ubike_act, key, val_max=patterns[key])
 			print(str.format("\n營運中且可還車輛數在 {} 輛(含)以內的站點有 {} 個", patterns[key], len(ubike_lst)))
-			_display_sites_random(ubike_lst)
+			_display_sites_random(ubike_lst, sort_key=key)
 		else:
 			#  2. Search available rental and return bikes using or criteria
 			# For my practice
@@ -121,8 +122,8 @@ def main():
 			ubike_lst:list[dict] = list(filter(lambda item:_search_bike_any(item, patterns), ubike_act))
 			print("\n搜尋")
 			print(str.format("\t- {}", '營運中' if act else '休息中'))
-			print(str.format("\t- 可借車輛數: {} 輛(含)以內", patterns['available_rent_bikes']))
-			print(str.format("\t- 可還車輛數: {} 輛(含)以內", patterns['available_return_bikes']))
+			print(str.format("\t- 可借車輛數: {} 輛(含)以內", patterns['rents']))
+			print(str.format("\t- 可還車輛數: {} 輛(含)以內", patterns['returns']))
 			cnt:int = len(ubike_lst)
 			print(f"\t共有 {cnt} 個符合條件的站點")
 			_display_sites_random(ubike_lst)
