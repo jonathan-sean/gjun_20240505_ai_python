@@ -57,6 +57,7 @@ def main():
 		if not resp.ok:
 			print(f"ERROR: 下載{title}失敗")
 			return
+		resp.close()
 
 		# This JSON include integer and float, but python json module cannot parse these data
 		# How to correct these ?
