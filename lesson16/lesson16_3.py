@@ -60,11 +60,13 @@ def practice_2():
 	df6['年底人口數'] = df6['年底人口數'].map(to_int)
 	#df6['年底人口數'] = df6['年底人口數'].map(lambda i: try: int(i) except: 0)
 	df6['人口密度'] = df6['人口密度'].map(to_int)
-	print(df6)
+	display(df6, raw=True)
 	df6.info()
 	df6.to_csv('人口密度.csv')
 	df6.to_excel('人口密度.xlsx', sheet_name='112 年度')
 	df6.to_json('人口密度.json', force_ascii=False, orient='table')
+	df6.to_html('人口密度.html')
+	df6.to_markdown('人口密度.md')
 
 def practice_3():
 	# Create a dataframe
