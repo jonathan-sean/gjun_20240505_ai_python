@@ -47,7 +47,7 @@ def _float_format(v):
 
 def export_to_html_part(data:pd.DataFrame, fname:str=None, title:str=None, first:int=5, last:int=5, append:bool=True, show:bool=False):
 	# Create temporary HTML file
-	if fname is None or fname == '':
+	if not fname:
 		fname = tempfile.NamedTemporaryFile(suffix='.html').name
 		show = True
 		append = False
@@ -55,7 +55,7 @@ def export_to_html_part(data:pd.DataFrame, fname:str=None, title:str=None, first
 	mode = 'a' if append else 'w'
 	print(f"add HTML data, mode: {mode}")
 	with open(fname, mode) as f:
-		if not (title is None or title == ''):
+		if title:
 			f.write(title)
 		if first > 0:
 			f.write(data.iloc[:first,:].to_html(float_format=_float_format))

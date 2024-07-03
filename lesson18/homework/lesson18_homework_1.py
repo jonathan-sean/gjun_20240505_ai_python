@@ -18,7 +18,7 @@ def _export_to_html_part(data:pd.DataFrame, title:str=None, first:int=5, last:in
 	fpath = os.path.basename(__file__).replace('py', 'html')
 	with open(fpath, mode) as f:
 		# Check for add title
-		if not (title is None or title == ''):
+		if title:
 			f.write(title)
 		# Check for add head data
 		if first > 0:
