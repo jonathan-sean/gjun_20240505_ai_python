@@ -1,5 +1,5 @@
 # 台積電,聯電,聯發科,鴻海,2024年,(平均,中位數,最高價,最低價,最高價日期,最低價的日期)
-from MyPackage import *
+from MyPackage.myDisp import *
 from pandas_datareader import data as pdr
 import yfinance as yf
 from datetime import datetime, date
@@ -153,10 +153,10 @@ def _main():
 	#print(df_combined.index)
 	#_modify_date_fmt(df_combined)
 	try:
-		df_combined.index = pd.to_datetime(df_combined.index, format="%Y-%m-%d", errors='ignore')
+		df_combined.index = pd.to_datetime(df_combined.index, format="%Y-%m-%d")
 	except Exception as e:
 		pass
-	show_df_part(df_combined, last=15)
+	show_df_part(df_combined, title="合併資料", last=15, fmt='markdown')
 
 
 if __name__ == "__main__":
