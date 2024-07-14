@@ -34,10 +34,17 @@ def _export_to_html_all(data:pd.DataFrame, title:str=None, append:bool=True):
 def _process_data(fname:str, path:str):
 	# 指定 header=1 從第二列開始取資料並去除 NaN 資料
 	df = pd.read_csv(os.path.join(path, fname), header=1).dropna()
-	# 去除無法轉換成數值的人口資料
+#	# 去除無法轉換成數值的人口資料
+#	for s in ['…', '… ']:
+#		idx_lst = df[ (df['年底人口數'] == s) | (df['人口密度'] == s)].index
+#		df.drop(idx_lst, inplace=True)
+	# 將人口資料的 '…' 轉為 0
 	for s in ['…', '… ']:
-		idx_lst = df[ (df['年底人口數'] == s) | (df['人口密度'] == s)].index
-		df.drop(idx_lst, inplace=True)
+		for k in ['年底人口數', '人口密度']:
+			idx_lst = df[df[k] == s].index
+			for i in idx_lst:
+				for i in idx_lst:
+					df.at[i, k] = '0'
 	dtype_map:dict = {
 		'統計年': int,
 		'年底人口數': int,
