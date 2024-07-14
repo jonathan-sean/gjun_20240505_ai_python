@@ -9,3 +9,4 @@ tabulate
 pandas-datareader
 yfinance
 flask
+python-dotenv
