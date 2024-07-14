@@ -17,6 +17,20 @@ handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 def index():
 	return("<h1>LineBot 的 webhook 程式</h1>")
 
+@app.route("/gemini/<prompt>")
+def gemini(prompt):
+	# Setup API key
+	genai.configure(api_key=os.environ['Gemini_API_KEY'])
+	# Select AI model
+	model=  genai.GenerativeModel('gemini-1.5-flash')
+	# Send the question
+	response=  model.generate_content(prompt)
+	# Get and return the answer
+	content:str = ""
+	for l in str(response.text).split('\n'):
+		content += f"<p>{l}</p>"
+	return content
+
 # Method use POST, NOT GET
 # Web browser 用 GET，所以 web browser 無法看到 callback 內容
 @app.route("/callback", methods=['POST'])
