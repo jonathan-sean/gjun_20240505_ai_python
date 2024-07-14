@@ -7,7 +7,7 @@ load_dotenv()
 
 @app.route("/")
 def index():
-	return("<h1>My first web page</h1>")
+	return("<h1>My first web page (我的第一個網站)</h1>")
 
 @app.route("/pwd")
 def pwd():
