@@ -7,36 +7,27 @@ def _practice_1():
 		index_col="日期",
 		usecols=['日期', '車站名稱', '進站人數', '出站人數']
 	)
-	show_df_part(df1)
-	show_df_all(df1[:20])
-	df1.info()
-	show_df_part(df1.loc['2019-04-23'])
-	show_df_part(df1.loc['2019-04-20':'2019-04-30'])
-	show_df_part(df1.loc['2020-03':'2020-05'])
-
 	# Clear all indies and reassign index
 	df2 = df1.reset_index().set_index(keys=['日期', '車站名稱'])
 	show_df_part(df2)
-
 	# columns 不是 multiple index，故只能用 name
 	df2.columns.name = '人數'
 	show_df_part(df2)
 	s1 = df2.stack(level='人數')
 	pprint(s1)
-	# Below line will fail, why?
-	#pprint(df2.stack(level='車站名稱'))
-	# Below line will fail, why?
-	#pprint(df2.unstack(level='人數'))
-	pprint(s1.unstack(level='車站名稱'))
 
-	print("\n列出 2019-04-23 到 2019-04-30 的資料")
 	s2 = s1['2019-04-23':'2019-04-30']
 	pprint(s2)
 
-	# groupby: 集合相同欄位名稱的資料
-	#pprint(s2.groupby(level='車站名稱').sum())
-	pprint(s2.groupby(level=['車站名稱','人數']).sum())
-
+	# sum() 只處理能運算的 int 等 type，其他無法運算者會被 ignore
+	print(s2.groupby(level=['日期']).sum())
+	print("\ngroup by 日期 & 人數")
+	print(s2.groupby(level=['日期', '人數']).sum())
+	print("\ngroup by 人數 & 車站名稱")
+	print(s2.groupby(level=['車站名稱', '人數']).sum())
+	print("\nunstack by 人數")
+	#print(type(s2.groupby(level=['車站名稱', '人數']).sum().unstack(level='人數')))
+	print(s2.groupby(level=['車站名稱', '人數']).sum().unstack(level='人數'))
 
 def _main():
 	_practice_1()
