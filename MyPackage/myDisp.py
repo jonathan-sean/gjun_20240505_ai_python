@@ -77,7 +77,7 @@ def export_part(
 				f.write("\n\n")
 	if show:
 		match fname_ext:
-			case 'html': os.system("w3m -dump {}".format(fname))
+			case 'html': os.system("w3m -t 4 -dump {}".format(fname))
 			case 'md': os.system("glow {}".format(fname))
 #	if show: os.system("chromium {}".format(fpath))
 
